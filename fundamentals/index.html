@@ -1,52 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My First Wepage</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-    <h3>Hello World, but smaller</h3>
-    <p>
-        Lorem ipsum <strong>dolor</strong> sit amet, <em>consectetur</em> adipiscing elit, sed 
-        do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-        in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit 
-        anim id est laborum.
-    </p>
-    <h4>Aldi</h4>
-    <ul>
-        <li>Bananas</li>
-        <li>Croutons</li>
-        <li>Bacon Bits</li>
-        <li>Lettuce</li>
-        <li>Yogurt</li>
-    </ul>
-    <h4>To Do Today</h4>
-    <ol>
-        <li>Weekly All Hands</li>
-        <li>Laundry</li>
-        <li>TOP</li>
-        <li>Weekly Delivery Stand</li>
-    </ol>
-    <h4>Places to Visit</h4>
-    <ul>
-        <li>Yosemite</li>
-        <li>Tetons</li>
-        <li>Yellowstone</li>
-        <li>Glacier NP</li>
-    </ul>
-    <h4>Top 5 Favorite Movies</h4>
-    <ol>
-        <li>Jurassic Park</li>
-        <li>The Lion King</li>
-        <li>The Shawshank Redemption</li>
-        <li>The Dark Knight</li>
-        <li>LOTR</li>
-    </ol>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+      <h1>Number guessing game</h1>
+
+      <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or less. We'll tell you if your guess was too high or too low.</p>
+
+<div class="form">
+  <label for="guessField">Enter a guess: </label><input type="text" id="guessField" class="guessField">
+  <input type="submit" value="Submit guess" class="guessSubmit">
+</div>
+
+<div class="resultParas">
+  <p class="guesses"></p>
+  <p class="lastResult"></p>
+  <p class="lowOrHi"></p>
+</div>
+
 </body>
+
+<script>
+  let randomNumber = Math.floor(Math.random()*100) + 1;
+
+  const guesses = document.querySelector('.guesses');
+  const lastResult = document.querySelector('.lastResult');
+  const lowOrHi = document.querySelector('.lowOrHi');
+  const guessSubmit = document.querySelector('.guessSubmit');
+  const guessField = document.querySelector('.guessField');
+
+  let guessCount = 1;
+  let resetButton;
+
+  function checkGuess() {
+
+    const userGuess = Number(guessField.value);
+    if(guessCount === 1) {
+      guesses.textContent = 'Previous guesses: ';
+    }
+    guesses.textContent += userGuess + ' ';
+
+    if(userGuess === randomNumber) {
+      lastResult.textContent = 'Congratulations! You got it right!';
+      lastResult.style.backgroundColor = 'green';
+      lowOrHi.textContent = '';
+      setGameOver();
+    } else if(guessCount === 10) {
+      lastResult.textContent = '!!!GAME OVER!!!';
+      setGameOver();
+    } else {
+      lastResult.textContent = 'Wrong!';
+      lastResult.style.backgroundColor = 'red';
+      if(userGuess < randomNumber) {
+        lowOrHi.textContent = 'Last guess was too low!';
+      } else if(userGuess > randomNumber) {
+        lowOrHi.textContent = 'Last guess was too high!';
+      }
+    }
+
+    guessCount++;
+    guessField.value = '';
+    guessField.focus();
+  }
+  guessSubmit.addEventListener('click', checkGuess);
+
+  function setGameOver() {
+	  guessField.disabled = true;
+	  guessSubmit.disabled = true;
+	  resetButton = document.createElement('button');
+	  resetButton.textContent = 'Start new game';
+	  document.body.appendChild(resetButton);
+	  resetButton.addEventListener('click', resetGame);
+  }
+
+  function resetGame() {
+	  guessCount = 1;
+
+    const resetParas = document.querySelectorAll('.resultParas p');
+    for (const resetPara of resetParas) {
+      resetPara.textContent = '';
+    }
+	  resetButton.parentNode.removeChild(resetButton);
+
+	  guessField.disabled = false;
+	  guessSubmit.disabled = false;
+	  guessField.value = '';
+	  guessField.focus();
+
+	  lastResult.style.backgroundColor = 'white';
+
+	  randomNumber = Math.floor(Math.random()*100) + 1;
+  }
+</script>
 </html>
