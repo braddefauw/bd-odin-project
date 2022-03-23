@@ -4,136 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP Practice</title>
-    <style>
-       @font-face {
-            font-family: 'handwriting';
-            src: url('fonts/journal-webfont.woff2') format('woff2'),
-                url('fonts/journal-webfont.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'typewriter';
-            src: url('fonts/veteran_typewriter-webfont.woff2') format('woff2'),
-                url('fonts/veteran_typewriter-webfont.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font  : 1.3rem sans-serif;
-            padding : 0.5em;
-            margin  : 0;
-            background : #222;
-        }
-
-        form {
-            position : relative;
-            width  : 740px;
-            height : 498px;
-            margin : 0 auto;
-            padding: 1em;
-            box-sizing: border-box;
-            background : #FFF url(img/background.jpeg);
-
-            /* we create our grid */
-            display  : grid;
-            grid-gap : 20px;
-            grid-template-columns : repeat(2, 1fr);
-            grid-template-rows    : 10em 1em 1em 1em;
-        } 
-
-        h1 {
-            font : 1em "typewriter", monospace;
-            align-self : end;
-        }
-
-        #message {
-            grid-row: 1 / 5;
-        }
-
-        #from, #reply {
-            display: flex;
-        }
-
-        label {
-            font : .8em "typewriter", sans-serif;
-        }
-
-        input, textarea {
-            font    : 1.4em/1.5em "handwriting", cursive, sans-serif;
-            border  : none;
-            padding : 0 10px;
-            margin  : 0;
-            width   : 80%;
-            background : none;
-        }
-
-        input:focus, textarea:focus {
-            background   : rgba(0,0,0,.1);
-            border-radius: 5px;
-        }
-
-        textarea {
-            display : block;
-
-            padding : 10px;
-            margin  : 10px 0 0 -10px;
-            width   : 100%;
-            height  : 90%;
-
-            border-right: 1px solid;
-
-            /* resize  : none; */
-            overflow: auto;
-        }
-
-        button {
-            padding      : 5px;
-            font         : bold .6em sans-serif;
-            border       : 2px solid #333;
-            border-radius: 5px;
-            background   : none;
-            cursor       : pointer;
-            transform    : rotate(-1.5deg);
-        }
-
-        button:after {
-            content      : " >>>";
-        }
-
-        button:hover,
-        button:focus {
-            outline     : none;
-            background  : #000;
-            color       : #FFF;
-        }
-    </style>
+    <title>Speaker Submission</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form>
-        <h1>to: Mozilla</h1>
-      
-        <div id="from">
-          <label for="name">from:</label>
-          <input type="text" id="name" name="user_name">
+    <header class='speaker-form-header'>
+        <h1>Speaker Submission</h1>
+        <p><em>Want to speak at our fake conference? Fill out
+          this form.</em></p>
+    </header>
+    <form action='' method='get' class='speaker-form'>
+        <div class='form-row'>
+            <label for='full-name'>Name</label>
+            <input id='full-name' name='full-name' type='text'/>
         </div>
-      
-        <div id="reply">
-          <label for="mail">reply:</label>
-          <input type="email" id="mail" name="user_email">
-        </div>
-      
-        <div id="message">
-          <label for="msg">Your message:</label>
-          <textarea id="msg" name="user_message"></textarea>
-        </div>
-      
-        <div class="button">
-          <button type="submit">Send your message</button>
-        </div>
-      </form>
+        <div class='form-row'>
+            <label for='email'>Email</label>
+            <input id='email'
+                   name='email'
+                   type='email'
+                   placeholder='joe@example.com'/>
+          </div>
+          <fieldset class='legacy-form-row'>
+            <legend>Type of Talk</legend>
+            <input id='talk-type-1'
+                   name='talk-type'
+                   type='radio'
+                   value='main-stage' />
+            <label for='talk-type-1' class='radio-label'>Main Stage</label>
+            <input id='talk-type-2'
+                   name='talk-type'
+                   type='radio'
+                   value='workshop'
+                   checked />
+            <label for='talk-type-2' class='radio-label'>Workshop</label>
+          </fieldset>
+          <div class='form-row'>
+            <label for='t-shirt'>T-Shirt Size</label>
+            <select id='t-shirt' name='t-shirt'>
+              <option value='xs'>Extra Small</option>
+              <option value='s'>Small</option>
+              <option value='m'>Medium</option>
+              <option value='l'>Large</option>
+            </select>
+          </div>
+          <div class='form-row'>
+            <label for='abstract'>Abstract</label>
+            <textarea id='abstract' name='abstract'></textarea>
+            <div class='instructions'>Describe your talk in 500 words or less</div>
+          </div>
+          <div class='form-row'>
+            <label class='checkbox-label' for='available'>
+            <input id='available'
+                   name='available'
+                   type='checkbox'
+                   value='is-available'/>
+            <span>I’m actually available the date of the talk</span>
+            </label>
+          </div>
+          <div class='form-row'>
+            <button>Submit</button>
+          </div>
+    </form>
 </body>
 </html>
