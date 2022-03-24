@@ -8,63 +8,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class='speaker-form-header'>
-        <h1>Speaker Submission</h1>
-        <p><em>Want to speak at our fake conference? Fill out
-          this form.</em></p>
-    </header>
-    <form action='' method='get' class='speaker-form'>
-        <div class='form-row'>
-            <label for='full-name'>Name</label>
-            <input id='full-name' name='full-name' type='text'/>
-        </div>
-        <div class='form-row'>
-            <label for='email'>Email</label>
-            <input id='email'
-                   name='email'
-                   type='email'
-                   placeholder='joe@example.com'/>
-          </div>
-          <fieldset class='legacy-form-row'>
-            <legend>Type of Talk</legend>
-            <input id='talk-type-1'
-                   name='talk-type'
-                   type='radio'
-                   value='main-stage' />
-            <label for='talk-type-1' class='radio-label'>Main Stage</label>
-            <input id='talk-type-2'
-                   name='talk-type'
-                   type='radio'
-                   value='workshop'
-                   checked />
-            <label for='talk-type-2' class='radio-label'>Workshop</label>
+    <form>
+        <p>
+          <fieldset>
+            <legend>Do you have a driver's license?<abbr title="This field is mandatory" aria-label="required">*</abbr></legend>
+            <!-- While only one radio button in a same-named group can be selected at a time,
+                 and therefore only one radio button in a same-named group having the "required"
+                 attribute suffices in making a selection a requirement -->
+            <input type="radio" required name="driver" id="r1" value="yes"><label for="r1">Yes</label>
+            <input type="radio" required name="driver" id="r2" value="no"><label for="r2">No</label>
           </fieldset>
-          <div class='form-row'>
-            <label for='t-shirt'>T-Shirt Size</label>
-            <select id='t-shirt' name='t-shirt'>
-              <option value='xs'>Extra Small</option>
-              <option value='s'>Small</option>
-              <option value='m'>Medium</option>
-              <option value='l'>Large</option>
-            </select>
-          </div>
-          <div class='form-row'>
-            <label for='abstract'>Abstract</label>
-            <textarea id='abstract' name='abstract'></textarea>
-            <div class='instructions'>Describe your talk in 500 words or less</div>
-          </div>
-          <div class='form-row'>
-            <label class='checkbox-label' for='available'>
-            <input id='available'
-                   name='available'
-                   type='checkbox'
-                   value='is-available'/>
-            <span>I’m actually available the date of the talk</span>
-            </label>
-          </div>
-          <div class='form-row'>
-            <button>Submit</button>
-          </div>
+        </p>
+        <p>
+          <label for="n1">How old are you?</label>
+          <!-- The pattern attribute can act as a fallback for browsers which
+               don't implement the number input type but support the pattern attribute.
+               Please note that browsers that support the pattern attribute will make it
+               fail silently when used with a number field.
+               Its usage here acts only as a fallback -->
+          <input type="number" min="12" max="120" step="1" id="n1" name="age"
+                 pattern="\d+">
+        </p>
+        <p>
+          <label for="t1">What's your favorite fruit?<abbr title="This field is mandatory" aria-label="required">*</abbr></label>
+          <input type="text" id="t1" name="fruit" list="l1" required
+                 pattern="[Bb]anana|[Cc]herry|[Aa]pple|[Ss]trawberry|[Ll]emon|[Oo]range">
+          <datalist id="l1">
+            <option>Banana</option>
+            <option>Cherry</option>
+            <option>Apple</option>
+            <option>Strawberry</option>
+            <option>Lemon</option>
+            <option>Orange</option>
+          </datalist>
+        </p>
+        <p>
+          <label for="t2">What's your e-mail address?</label>
+          <input type="email" id="t2" name="email">
+        </p>
+        <p>
+          <label for="t3">Leave a short message</label>
+          <textarea id="t3" name="msg" maxlength="140" rows="5"></textarea>
+        </p>
+        <p>
+          <button>Submit</button>
+        </p>
     </form>
 </body>
 </html>
