@@ -1,26 +1,23 @@
-form {
-    font: 1em sans-serif;
-    max-width: 320px;
-}
+html {
+    font-family: sans-serif;
+  }
 
-p > label {
-    display: block;
-}
+  table {
+    border-collapse: collapse;
+    border: 2px solid rgb(200,200,200);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-textarea,
-fieldset {
-    width : 100%;
-    border: 1px solid #333;
-    box-sizing: border-box;
-}
+  td, th {
+    border: 1px solid rgb(190,190,190);
+    padding: 10px 20px;
+  }
 
-input:invalid {
-    box-shadow: 0 0 5px 1px red;
-}
+  td {
+    text-align: center;
+  }
 
-input:focus:invalid {
-    box-shadow: none;
-}
+  caption {
+    padding: 10px;
+  }
