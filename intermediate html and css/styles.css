@@ -1,10 +1,37 @@
 .container {
-    display: grid;
-    grid-template-columns: 50px 50px;
-    grid-template-rows: 50px 50px;
-    gap: 10px;
+    display: inline-grid;
+    grid-template: 40px 40px 40px 40px 40px / 40px 40px 40px 40px 40px;
+    background-color: lightblue; 
+    grid-template-areas:
+      "living-room living-room living-room living-room living-room"
+      "living-room living-room living-room living-room living-room"
+      "bedroom bedroom bathroom kitchen kitchen"
+      "bedroom bedroom bathroom kitchen kitchen"
+      "closet closet bathroom kitchen kitchen"    
   }
   
-  .container > div {
-    border: 1px solid blue;
+  .room {
+    border: 1px solid;
+    font-size: 50%;
+    text-align: center;
+  }
+  
+  #living-room {
+     grid-area:  living-room;
+  }
+  
+  #kitchen {
+    grid-area: kitchen;
+  }
+  
+  #bedroom {
+    grid-area: bedroom;
+  }
+  
+  #bathroom {
+    grid-area: bathroom;
+  }
+  
+  #closet {
+    grid-area: closet;
   }
