@@ -33,56 +33,23 @@ myButton.onclick = function() {
     setUserName();
 }
 
-function Book(title, author, pages, read){
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read;
-    this.info = function(){
-        return `${title} by ${author}, ${pages} pages, ${read}`
-    }
-}
+// END MOZILLA
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'not read yet');
+// START ODIN
+const calculator = (() => {
+  const add = (a, b) => a + b;
+  const sub = (a, b) => a - b;
+  const mul = (a, b) => a * b;
+  const div = (a, b) => a / b;
+  return {
+    add,
+    sub,
+    mul,
+    div,
+  };
+})();
 
-// console.log(theHobbit.info());
+console.log(calculator.add(3,5)); // 8
+console.log(calculator.sub(6,2)); // 4
+console.log(calculator.mul(14,5534)); // 77476
 
-// function printStuff(myDocuments) {
-//     this.documents = myDocuments;
-// }
-
-// printStuff.prototype.print = function(){
-//     console.log(this.documents);
-// }
-
-// var newObj = new printStuff("I am a new Object and I can print.");
-
-// newObj.print();
-
-function Student() {
-}
-
-Student.prototype.sayName = function() {
-  console.log(this.name)
-}
-
-function EighthGrader(name) {
-  this.name = name
-  this.grade = 8
-}
-
-// don't do this!!!
-EighthGrader.prototype = Student.prototype
-
-function NinthGrader(name) {
-  this.name = name
-  this.grade = 9
-}
-
-// noooo! not again!
-NinthGrader.prototype = Student.prototype
-
-NinthGrader.prototype.sayName = function() {console.log("HAHAHAHAHAHA")}
-
-const carl = new EighthGrader("carl")
-carl.sayName() //uh oh! this logs "HAHAHAHAHAHA" because we edited the sayName function!
