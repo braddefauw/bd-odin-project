@@ -1,54 +1,19 @@
-let myImage = document.querySelector("img");
-
-myImage.onclick = function () {
-  let mySrc = myImage.getAttribute("src");
-  if (mySrc === "images/firefox-icon.png") {
-    myImage.setAttribute("src", "images/firefox2.png");
-  } else {
-    myImage.setAttribute("src", "images/firefox-icon.png");
-  }
-};
-
-let myButton = document.querySelector("button");
-let myHeading = document.querySelector("h1");
-
-function setUserName() {
-  let myName = prompt("Please enter your name.");
-  if (!myName) {
-    setUserName();
-  } else {
-    localStorage.setItem("name", myName);
-    myHeading.textContent = "Mozilla is cool, " + myName;
-  }
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
 }
 
-if (!localStorage.getItem("name")) {
-  setUserName();
-} else {
-  let storedName = localStorage.getItem("name");
-  myHeading.textContent = "Mozilla is cool, " + storedName;
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
-
-myButton.onclick = function () {
-  setUserName();
-};
-
-// END MOZILLA
-
-// START ODIN
-const calculator = (() => {
-  const add = (a, b) => a + b;
-  const sub = (a, b) => a - b;
-  const mul = (a, b) => a * b;
-  const div = (a, b) => a / b;
-  return {
-    add,
-    sub,
-    mul,
-    div,
-  };
-})();
-
-console.log(calculator.add(3, 5)); // 8
-console.log(calculator.sub(6, 2)); // 4
-console.log(calculator.mul(14, 5534)); // 77476
