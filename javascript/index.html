@@ -1,85 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>My test page</title>
-    <link
-      href="http://fonts.googleapis.com/css?family=Open+Sans"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="styles/style.css" rel="stylesheet" type="text/css" />
-    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="utf-8"/>
+    <title>Form validation: Task 1</title>
+    <style>
+      body {
+        background-color: #fff;
+        color: #333;
+        font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
+        padding: 1em;
+        margin: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
   </head>
+
   <body>
-    <!-- Top Navigation Menu -->
-    <div class="topnav">
-      <a href="#home" class="active">Logo</a>
-      <!-- Navigation links (hidden by default) -->
-      <div id="myLinks">
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
-      </div>
-      <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-      </a>
-    </div>
-    <!-- Slideshow container -->
-    <div class="slideshow-container">
-
-      <!-- Full-width images with number and caption text -->
-      <div class="mySlides fade">
-        <div class="numbertext">1 / 4</div>
-        <img src="./images/img_nature_wide.jpeg" style="width:100%">
-        <div class="text">Caption One</div>
-      </div>
-
-      <div class="mySlides fade">
-        <div class="numbertext">2 / 4</div>
-        <img src="./images/img_snow_wide.jpeg" style="width:100%">
-        <div class="text">Caption Two</div>
-      </div>
-
-      <div class="mySlides fade">
-        <div class="numbertext">3 / 4</div>
-        <img src="./images/img_lights_wide.jpeg" style="width:100%">
-        <div class="text">Caption Three</div>
-      </div>
-
-      <div class="mySlides fade">
-        <div class="numbertext">4 / 4</div>
-        <img src="./images/img_mountains_wide.jpeg" style="width:100%">
-        <div class="text">Caption Four</div>
-      </div>
-
-      <!-- Next and previous buttons -->
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-    <br>
-
-    <!-- The dots/circles -->
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-      <span class="dot" onclick="currentSlide(4)"></span>
-    </div>
-    
-    <!-- Forms practice -->
-    <form novalidate>
-      <p>
-        <label for="mail">
-          <span>Please enter an email address:</span>
-          <input type="email" id="mail" name="mail" required minlength="8">
-          <span class="error" aria-live="polite"></span>
-        </label>
-      </p>
-      <button>Submit</button>
+    <form>
+      <h2>Enter your support query</h2>
+      <ul>
+        <li>
+          <label for="uname">User name:</label>
+          <input type="text" name="uname" id="uname" minlength="5" maxlength="20" required>
+        </li>
+        <li>
+          <label for="email">Email address:</label>
+          <input type="email" name="email" id="email" required>
+        </li>
+        <li>
+          <label for="phone">Phone number:</label>
+          <input type="tel" name="phone" id="phone" maxlength="15" required>
+        </li>
+        <li>
+          <label for="comment">Comment:</label>
+          <textarea name="comment" id="comment" maxlength="200">
+          </textarea>
+        </li>
+        <li>
+          <button>Submit comment</button>
+        </li>
+      </ul>
     </form>
-    <script src="scripts/main.js"></script>
   </body>
+
 </html>
