@@ -23,6 +23,10 @@ input[type=email], input[type=text], input[type=password]{
   box-sizing: border-box;
 }
 
+#country {
+  width: 100%;
+}
+
 /* This is our style for the invalid fields */
 input:invalid{
   border-color: #900;
