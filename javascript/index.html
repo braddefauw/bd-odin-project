@@ -1,49 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <title>Form validation: Task 1</title>
-    <style>
-      body {
-        background-color: #fff;
-        color: #333;
-        font: 1em / 1.4 Helvetica Neue, Helvetica, Arial, sans-serif;
-        padding: 1em;
-        margin: 0;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-    </style>
-  </head>
-
-  <body>
-    <form>
-      <h2>Enter your support query</h2>
-      <ul>
-        <li>
-          <label for="uname">User name:</label>
-          <input type="text" name="uname" id="uname" minlength="5" maxlength="20" required>
-        </li>
-        <li>
-          <label for="email">Email address:</label>
-          <input type="email" name="email" id="email" required>
-        </li>
-        <li>
-          <label for="phone">Phone number:</label>
-          <input type="tel" name="phone" id="phone" maxlength="15" required>
-        </li>
-        <li>
-          <label for="comment">Comment:</label>
-          <textarea name="comment" id="comment" maxlength="200">
-          </textarea>
-        </li>
-        <li>
-          <button>Submit comment</button>
-        </li>
-      </ul>
-    </form>
-  </body>
-
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Doc</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <form>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br>
+    <label for="country">Country:</label><br>
+    <input type="text" id="country" name="country"><br>
+    <label for="zip">Zip Code:</label><br>
+    <input id="zip" name="zip" type="text" pattern="[0-9]*"><br>
+    <label for="pw">Password:</label><br>
+    <input type="password" id="pw" name="pw"><br>
+    <label for="pwc">Confirm Password:</label><br>
+    <input type="password" id="pwc" name="pwc"><br>
+    <input type="submit" value="Sign in">
+  </form>
+  <script src="scripts/main.js"></script>
+</body>
 </html>
