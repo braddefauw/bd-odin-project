@@ -269,8 +269,12 @@
         <input type="text" id="zip" name="zip" pattern="[0-9]{5}">
         <span class="error" aria-live="polite"></span>
       </label><br>
-      <label for="pw">Password:</label><br>
-      <input type="password" id="pw" name="pw"><br>
+      <label for="pw">
+        <span>Password (Minimum of 7 characters. Should have at least one special character and one number.):</span>
+        <input type="password" id="pw" name="pw" 
+        pattern="(?=.*\d)(?=.*[\W_]).{7,}">
+        <span class="error" aria-live="polite"></span>
+      </label><br>
       <label for="pwc">Confirm Password:</label><br>
       <input type="password" id="pwc" name="pwc"><br>
       <input type="submit" value="Sign in">

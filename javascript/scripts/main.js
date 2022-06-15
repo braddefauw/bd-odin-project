@@ -6,6 +6,8 @@ const email = document.getElementById('email');
 const emailError = document.querySelector('#email + span.error');
 const zipCode = document.getElementById('zip');
 const zipError = document.querySelector('#zip + span.error');
+const pw = document.getElementById('pw');
+const pwError = document.querySelector('#pw + span.error');
 
 email.addEventListener('input', function (event) {
   // Each time the user types something, we check if the
@@ -37,6 +39,20 @@ zipCode.addEventListener('input', function (event) {
   }
 });
 
+pw.addEventListener('input', function (event) {
+  // Each time the user types something, we check if the
+  // form fields are valid.
+  if (pw.validity.valid) {
+    // In case there is an error message visible, if the field
+    // is valid, we remove the error message.
+    pwError.textContent = ''; // Reset the content of the message
+    pwError.className = 'error'; // Reset the visual state of the message
+  } else {
+    // If there is still an error, show the correct error
+    showPasswordError();
+  }
+});
+
 form.addEventListener('submit', function (event) {
   // if the email field is valid, we let the form submit
 
@@ -47,20 +63,6 @@ form.addEventListener('submit', function (event) {
     event.preventDefault();
   }
 });
-
-function showZipError() {
-  if(zipCode.validity.valueMissing) {
-    // If the field is empty,
-    // display the following error message.
-    zipError.textContent = 'You need to enter a zip.';
-  } else if(zipCode.validity.patternMismatch) {
-    // If the field doesn't contain an the correct pattern,
-    // display the following error message.
-    zipError.textContent = 'Please make sure to enter a valid 5-digit zip code.';
-  }
-  // Set the styling appropriately
-  zipError.className = 'error active';
-}
 
 function showEmailError() {
   if(email.validity.valueMissing) {
@@ -79,4 +81,33 @@ function showEmailError() {
 
   // Set the styling appropriately
   emailError.className = 'error active';
+}
+
+function showZipError() {
+  if(zipCode.validity.valueMissing) {
+    // If the field is empty,
+    // display the following error message.
+    zipError.textContent = 'You need to enter a zip.';
+  } else if(zipCode.validity.patternMismatch) {
+    // If the field doesn't contain an the correct pattern,
+    // display the following error message.
+    zipError.textContent = 'Please make sure to enter a valid 5-digit zip code.';
+  }
+  // Set the styling appropriately
+  zipError.className = 'error active';
+}
+
+function showPasswordError() {
+  if(pw.validity.valueMissing) {
+    // If the field is empty,
+    // display the following error message.
+    pwError.textContent = 'You need to enter a password.';
+  }else if(pw.validity.patternMismatch) {
+    // If the field doesn't contain an the correct pattern,
+    // display the following error message.
+    pwError.textContent = 'Please make sure to follow the correct pattern (Minimum of 7 characters. Should have at least one special character and one number.).';
+  }
+
+  // Set the styling appropriately
+  pwError.className = 'error active';
 }
