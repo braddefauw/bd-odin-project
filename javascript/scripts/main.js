@@ -57,8 +57,7 @@ pw.addEventListener('input', function (event) {
 
 pwc.addEventListener('input', function (event) {
   if(pw.value !== pwc.value){
-    pwcError.textContent = 'Passwords do not match.';
-    pwcError.className = 'error active';
+    showPasswordConfirmError();
   }
   // Each time the user types something, we check if the
   // form fields are valid.
@@ -72,18 +71,19 @@ pwc.addEventListener('input', function (event) {
 
 form.addEventListener('submit', function (event) {
   // if the email field is valid, we let the form submit
-  event.preventDefault();
-  console.log(email.validity, zipCode.validity, pw.validity, pwc.validity)
-  if(!email.validity.valid || !zipCode.validity.valid || !pw.validity.valid || !pwc.validity.valid) {
+  if(!email.value || !zipCode.value || !pw.value || !pwc.value) {
     // If it isn't, we display an appropriate error message
-    showError();
+    showEmailError();
+    showZipError();
+    showPasswordError();
+    showPasswordConfirmError();
     // Then we prevent the form from being sent by canceling the event
     event.preventDefault();
   }
 });
 
 function showEmailError() {
-  if(email.validity.valueMissing) {
+  if(!email.value) {
     // If the field is empty,
     // display the following error message.
     emailError.textContent = 'You need to enter an e-mail address.';
@@ -102,7 +102,7 @@ function showEmailError() {
 }
 
 function showZipError() {
-  if(zipCode.validity.valueMissing) {
+  if(!zipCode.value) {
     // If the field is empty,
     // display the following error message.
     zipError.textContent = 'You need to enter a zip.';
@@ -116,7 +116,7 @@ function showZipError() {
 }
 
 function showPasswordError() {
-  if(pw.validity.valueMissing) {
+  if(!pw.value) {
     // If the field is empty,
     // display the following error message.
     pwError.textContent = 'You need to enter a password.';
@@ -128,4 +128,13 @@ function showPasswordError() {
 
   // Set the styling appropriately
   pwError.className = 'error active';
+}
+
+function showPasswordConfirmError(){
+  if(!pwc.value){
+    pwcError.textContent = 'You need to enter a confirmation password.'
+  }else{
+    pwcError.textContent = 'Passwords do not match.';
+  }
+  pwcError.className = 'error active';
 }
