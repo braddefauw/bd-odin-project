@@ -275,8 +275,11 @@
         pattern="(?=.*\d)(?=.*[\W_]).{7,}">
         <span class="error" aria-live="polite"></span>
       </label><br>
-      <label for="pwc">Confirm Password:</label><br>
-      <input type="password" id="pwc" name="pwc"><br>
+      <label for="pwc">
+        <span>Confirm Password (Minimum of 7 characters. Should have at least one special character and one number.):</span>
+        <input type="password" id="pwc" name="pwc">
+        <span class="error" aria-live="polite"></span>
+      </label><br>
       <input type="submit" value="Sign in">
     </p>
   </form>

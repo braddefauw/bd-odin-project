@@ -8,6 +8,8 @@ const zipCode = document.getElementById('zip');
 const zipError = document.querySelector('#zip + span.error');
 const pw = document.getElementById('pw');
 const pwError = document.querySelector('#pw + span.error');
+const pwc = document.getElementById('pwc');
+const pwcError = document.querySelector('#pwc + span.error');
 
 email.addEventListener('input', function (event) {
   // Each time the user types something, we check if the
@@ -53,10 +55,26 @@ pw.addEventListener('input', function (event) {
   }
 });
 
+pwc.addEventListener('input', function (event) {
+  if(pw.value !== pwc.value){
+    pwcError.textContent = 'Passwords do not match.';
+    pwcError.className = 'error active';
+  }
+  // Each time the user types something, we check if the
+  // form fields are valid.
+  else if (pwc.validity.valid) {
+    // In case there is an error message visible, if the field
+    // is valid, we remove the error message.
+    pwcError.textContent = ''; // Reset the content of the message
+    pwcError.className = 'error'; // Reset the visual state of the message
+  }
+});
+
 form.addEventListener('submit', function (event) {
   // if the email field is valid, we let the form submit
-
-  if(!email.validity.valid || !zipCode.validity.valid) {
+  event.preventDefault();
+  console.log(email.validity, zipCode.validity, pw.validity, pwc.validity)
+  if(!email.validity.valid || !zipCode.validity.valid || !pw.validity.valid || !pwc.validity.valid) {
     // If it isn't, we display an appropriate error message
     showError();
     // Then we prevent the form from being sent by canceling the event
