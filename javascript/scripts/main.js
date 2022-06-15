@@ -29,7 +29,7 @@ zipCode.addEventListener('input', function (event) {
   if (zipCode.validity.valid) {
     // In case there is an error message visible, if the field
     // is valid, we remove the error message.
-    zipCode.textContent = ''; // Reset the content of the message
+    zipError.textContent = ''; // Reset the content of the message
     zipError.className = 'error'; // Reset the visual state of the message
   } else {
     // If there is still an error, show the correct error
@@ -54,9 +54,9 @@ function showZipError() {
     // display the following error message.
     zipError.textContent = 'You need to enter a zip.';
   } else if(zipCode.validity.patternMismatch) {
-    // If the field doesn't contain an email address,
+    // If the field doesn't contain an the correct pattern,
     // display the following error message.
-    zipError.textContent = 'Please make sure to enter a valid zip code.';
+    zipError.textContent = 'Please make sure to enter a valid 5-digit zip code.';
   }
   // Set the styling appropriately
   zipError.className = 'error active';
