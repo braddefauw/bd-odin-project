@@ -1,140 +1,61 @@
-// There are many ways to pick a DOM node; here we get the form itself and the email
-// input box, as well as the span element into which we will place the error message.
-const form  = document.getElementsByTagName('form')[0];
+console.log("test");
 
-const email = document.getElementById('email');
-const emailError = document.querySelector('#email + span.error');
-const zipCode = document.getElementById('zip');
-const zipError = document.querySelector('#zip + span.error');
-const pw = document.getElementById('pw');
-const pwError = document.querySelector('#pw + span.error');
-const pwc = document.getElementById('pwc');
-const pwcError = document.querySelector('#pwc + span.error');
+async function populate() {
 
-email.addEventListener('input', function (event) {
-  // Each time the user types something, we check if the
-  // form fields are valid.
+  const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+  const request = new Request(requestURL);
 
-  if (email.validity.valid) {
-    // In case there is an error message visible, if the field
-    // is valid, we remove the error message.
-    emailError.textContent = ''; // Reset the content of the message
-    emailError.className = 'error'; // Reset the visual state of the message
-  } else {
-    // If there is still an error, show the correct error
-    showEmailError();
-  }
-});
+  const response = await fetch(request);
+  const superHeroes = await response.json();
 
-zipCode.addEventListener('input', function (event) {
-  // Each time the user types something, we check if the
-  // form fields are valid.
+  populateHeader(superHeroes);
+  populateHeroes(superHeroes);
 
-  if (zipCode.validity.valid) {
-    // In case there is an error message visible, if the field
-    // is valid, we remove the error message.
-    zipError.textContent = ''; // Reset the content of the message
-    zipError.className = 'error'; // Reset the visual state of the message
-  } else {
-    // If there is still an error, show the correct error
-    showZipError();
-  }
-});
-
-pw.addEventListener('input', function (event) {
-  // Each time the user types something, we check if the
-  // form fields are valid.
-  if (pw.validity.valid) {
-    // In case there is an error message visible, if the field
-    // is valid, we remove the error message.
-    pwError.textContent = ''; // Reset the content of the message
-    pwError.className = 'error'; // Reset the visual state of the message
-  } else {
-    // If there is still an error, show the correct error
-    showPasswordError();
-  }
-});
-
-pwc.addEventListener('input', function (event) {
-  if(pw.value !== pwc.value){
-    showPasswordConfirmError();
-  }
-  // Each time the user types something, we check if the
-  // form fields are valid.
-  else if (pwc.validity.valid) {
-    // In case there is an error message visible, if the field
-    // is valid, we remove the error message.
-    pwcError.textContent = ''; // Reset the content of the message
-    pwcError.className = 'error'; // Reset the visual state of the message
-  }
-});
-
-form.addEventListener('submit', function (event) {
-  // if the email field is valid, we let the form submit
-  if(!email.value || !zipCode.value || !pw.value || !pwc.value) {
-    // If it isn't, we display an appropriate error message
-    showEmailError();
-    showZipError();
-    showPasswordError();
-    showPasswordConfirmError();
-    // Then we prevent the form from being sent by canceling the event
-    event.preventDefault();
-  }
-});
-
-function showEmailError() {
-  if(!email.value) {
-    // If the field is empty,
-    // display the following error message.
-    emailError.textContent = 'You need to enter an e-mail address.';
-  } else if(email.validity.typeMismatch) {
-    // If the field doesn't contain an email address,
-    // display the following error message.
-    emailError.textContent = 'Entered value needs to be an e-mail address.';
-  } else if(email.validity.tooShort) {
-    // If the data is too short,
-    // display the following error message.
-    emailError.textContent = `Email should be at least ${ email.minLength } characters; you entered ${ email.value.length }.`;
-  }
-
-  // Set the styling appropriately
-  emailError.className = 'error active';
 }
 
-function showZipError() {
-  if(!zipCode.value) {
-    // If the field is empty,
-    // display the following error message.
-    zipError.textContent = 'You need to enter a zip.';
-  } else if(zipCode.validity.patternMismatch) {
-    // If the field doesn't contain an the correct pattern,
-    // display the following error message.
-    zipError.textContent = 'Please make sure to enter a valid 5-digit zip code.';
-  }
-  // Set the styling appropriately
-  zipError.className = 'error active';
+function populateHeader(obj) {
+  const header = document.querySelector('header');
+  const myH1 = document.createElement('h1');
+  myH1.textContent = obj['squadName'];
+  header.appendChild(myH1);
+
+  const myPara = document.createElement('p');
+  myPara.textContent = `Hometown: ${obj['homeTown']} // Formed: ${obj['formed']}`;
+  header.appendChild(myPara);
 }
 
-function showPasswordError() {
-  if(!pw.value) {
-    // If the field is empty,
-    // display the following error message.
-    pwError.textContent = 'You need to enter a password.';
-  }else if(pw.validity.patternMismatch) {
-    // If the field doesn't contain an the correct pattern,
-    // display the following error message.
-    pwError.textContent = 'Please make sure to follow the correct pattern (Minimum of 7 characters. Should have at least one special character and one number.).';
-  }
+function populateHeroes(obj) {
+  const section = document.querySelector('section');
+  const heroes = obj['members'];
 
-  // Set the styling appropriately
-  pwError.className = 'error active';
+  for (const hero of heroes) {
+    const myArticle = document.createElement('article');
+    const myH2 = document.createElement('h2');
+    const myPara1 = document.createElement('p');
+    const myPara2 = document.createElement('p');
+    const myPara3 = document.createElement('p');
+    const myList = document.createElement('ul');
+
+    myH2.textContent = hero.name;
+    myPara1.textContent = `Secret identity: ${hero.secretIdentity}`;
+    myPara2.textContent = `Age: ${hero.age}`;
+    myPara3.textContent = 'Superpowers:';
+
+    const superPowers = hero.powers;
+    for (const power of superPowers) {
+      const listItem = document.createElement('li');
+      listItem.textContent = power;
+      myList.appendChild(listItem);
+    }
+
+    myArticle.appendChild(myH2);
+    myArticle.appendChild(myPara1);
+    myArticle.appendChild(myPara2);
+    myArticle.appendChild(myPara3);
+    myArticle.appendChild(myList);
+
+    section.appendChild(myArticle);
+  }
 }
 
-function showPasswordConfirmError(){
-  if(!pwc.value){
-    pwcError.textContent = 'You need to enter a confirmation password.'
-  }else{
-    pwcError.textContent = 'Passwords do not match.';
-  }
-  pwcError.className = 'error active';
-}
+populate();
