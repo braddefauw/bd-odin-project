@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-
-    <title>Our superheroes</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/style.css">
-  </head>
-
-  <body>
-
-      <header>
-
-      </header>
-
-      <section>
-
-      </section>
-
-      <script src="/scripts/main.js">
-      </script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <img src="#">
+  <script>
+    const img = document.querySelector('img');
+    // URL (required), options (optional)
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
+      .then(function(response) {
+        // Successful response :)
+        return response.json();
+      })
+      .then(function(response){
+        img.src = response.data.images.original.url;
+      })
+      .catch(function(err) {
+        // Error :(
+          console.log(err);
+      });
+  </script>
+</body>
 </html>
