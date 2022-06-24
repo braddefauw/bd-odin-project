@@ -6,6 +6,7 @@
 </head>
 <body>
   <img src="#">
+  <button id="btn">Click Me</button>
   <script>
     const img = document.querySelector('img');
     // URL (required), options (optional)
@@ -21,6 +22,21 @@
         // Error :(
           console.log(err);
       });
+      const btn = document.querySelector("#btn");
+      btn.addEventListener("click", function(){
+        fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
+        .then(function(response) {
+          // Successful response :)
+          return response.json();
+        })
+        .then(function(response){
+          img.src = response.data.images.original.url;
+        })
+        .catch(function(err) {
+          // Error :(
+            console.log(err);
+        });
+      })
   </script>
 </body>
 </html>
