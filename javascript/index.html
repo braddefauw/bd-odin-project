@@ -5,12 +5,12 @@
   <title>Document</title>
 </head>
 <body>
-  <img src="#">
+  <img src="#"><br>
   <button id="btn">Click Me</button>
   <script>
     const img = document.querySelector('img');
-    // URL (required), options (optional)
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
+    function getDogImg(){
+      fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
       .then(function(response) {
         // Successful response :)
         return response.json();
@@ -22,21 +22,11 @@
         // Error :(
           console.log(err);
       });
+    }
+    // URL (required), options (optional)
+    window.onload = getDogImg();
       const btn = document.querySelector("#btn");
-      btn.addEventListener("click", function(){
-        fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
-        .then(function(response) {
-          // Successful response :)
-          return response.json();
-        })
-        .then(function(response){
-          img.src = response.data.images.original.url;
-        })
-        .catch(function(err) {
-          // Error :(
-            console.log(err);
-        });
-      })
+      btn.addEventListener("click", getDogImg);
   </script>
 </body>
 </html>
