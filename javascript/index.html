@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Odin Practice</title>
   <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
@@ -19,43 +19,55 @@
   <button id="btn">Click Me</button>
   <script>
     const img = document.querySelector('img');
-    function getDogImg(){
-      fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
-      .then(function(response) {
-        // Successful response :)
-        return response.json();
-      })
-      .then(function(response){
-        img.src = response.data.images.original.url;
-      })
-      .catch(function(err) {
-        // Error :(
-          console.log(err);
-      });
+
+    async function getDogs() {
+      const response = await fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
+      const dogData = await response.json();
+      img.src = dogData.data.images.original.url;
     }
-    // URL (required), options (optional)
-    window.onload = getDogImg();
-    const btn = document.querySelector("#btn");
-    btn.addEventListener("click", getDogImg);
-    const submit = document.getElementById("submit");
-    const search = document.getElementById("search")
-    //creates a listener for when you press a key
-    submit.addEventListener("click", function(){
-      const searchText = search.value;
-      console.log(searchText);
-      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=${searchText}`, {mode: 'cors'})
-      .then(function(response) {
-        // Successful response :)
-        return response.json();
-      })
-      .then(function(response){
-        img.src = response.data.images.original.url;
-      })
-      .catch(function(err) {
-        // Error :(
-          img.innerText = "No image found! Try again."
-      });
-    })
+    getDogs();
+    // const img = document.querySelector('img');
+    // function getDogImg(){
+    //   fetch('https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=dogs', {mode: 'cors'})
+    //   .then(function(response) {
+    //     // Successful response :)
+    //     return response.json();
+    //   })
+    //   .then(function(response){
+    //     img.src = response.data.images.original.url;
+    //   })
+    //   .catch(function(err) {
+    //     // Error :(
+    //       console.log(err);
+    //   });
+    // }
+    // // URL (required), options (optional)
+    // window.onload = getDogImg();
+    // const btn = document.querySelector("#btn");
+    // btn.addEventListener("click", getDogImg);
+    // const submit = document.getElementById("submit");
+    // const search = document.getElementById("search")
+    // //creates a listener for when you press a key
+    // submit.addEventListener("click", function(){
+    //   const searchText = search.value;
+    //   fetch(`https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=${searchText}`, {mode: 'cors'})
+    //   .then(function(response) {
+    //     // Successful response :)
+    //     return response.json();
+    //   })
+    //   .then(function(response){
+    //     console.log(response.data.images);
+    //     if(response.data.images === undefined){
+    //       console.log("No image found! Try again.");
+    //     }else{
+    //       img.src = response.data.images.original.url;
+    //     }
+    //   })
+    //   .catch(function(err) {
+    //     // Error :(
+    //       console.log(err);
+    //   });
+    // })
   </script>
 </body>
 </html>
