@@ -3,8 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 <body>
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <div class="search-container">
+      <input type="text" placeholder="Search.." name="search" id="search">
+      <button id="submit">Submit</button>
+    </div>
+  </div>
   <img src="#"><br>
   <button id="btn">Click Me</button>
   <script>
@@ -25,8 +35,27 @@
     }
     // URL (required), options (optional)
     window.onload = getDogImg();
-      const btn = document.querySelector("#btn");
-      btn.addEventListener("click", getDogImg);
+    const btn = document.querySelector("#btn");
+    btn.addEventListener("click", getDogImg);
+    const submit = document.getElementById("submit");
+    const search = document.getElementById("search")
+    //creates a listener for when you press a key
+    submit.addEventListener("click", function(){
+      const searchText = search.value;
+      console.log(searchText);
+      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=WhTwROHDvG43k75Hb5sgJ90BHwBpIL56&s=${searchText}`, {mode: 'cors'})
+      .then(function(response) {
+        // Successful response :)
+        return response.json();
+      })
+      .then(function(response){
+        img.src = response.data.images.original.url;
+      })
+      .catch(function(err) {
+        // Error :(
+          console.log(err);
+      });
+    })
   </script>
 </body>
 </html>
