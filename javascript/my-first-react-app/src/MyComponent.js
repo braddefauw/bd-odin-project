@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 class MyComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     const { title, onButtonClicked } = this.props;
