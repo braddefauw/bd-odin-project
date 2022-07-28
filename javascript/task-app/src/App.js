@@ -9,7 +9,7 @@ class App extends Component {
     this.state = {
       task: { 
         text: '',
-        id: uniqid()
+        id: uniqid(),
       },
       tasks: [],
     };
