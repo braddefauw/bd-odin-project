@@ -36,19 +36,18 @@ class App extends Component {
   };
 
   deleteTask = (e) => {
-    // this removes the item from the array, but not the page
-    this.setState({
-      tasks: this.state.tasks.splice(this.state.task, 1),
-    })
-    console.log(this.state.tasks)
-    
-    //this doesn't work as e.target.value is undefined
-
+    // // this removes the item from the array, but not the page
     // this.setState({
-    //   tasks: this.state.tasks.filter((task) => {
-    //     return task !== e.target.value;
-    //   }),
+    //   tasks: this.state.tasks.splice(this.state.task, 1),
     // })
+    // console.log(this.state.tasks)
+    
+    const name = e.target.getAttribute("name");
+    this.setState({
+      tasks: this.state.tasks.filter(function(task){
+        return task.text !== name;
+      }),
+    })
   }
 
   render() {
