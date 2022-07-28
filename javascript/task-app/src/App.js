@@ -35,6 +35,22 @@ class App extends Component {
     });
   };
 
+  deleteTask = (e) => {
+    // this removes the item from the array, but not the page
+    this.setState({
+      tasks: this.state.tasks.splice(this.state.task, 1),
+    })
+    console.log(this.state.tasks)
+    
+    //this doesn't work as e.target.value is undefined
+
+    // this.setState({
+    //   tasks: this.state.tasks.filter((task) => {
+    //     return task !== e.target.value;
+    //   }),
+    // })
+  }
+
   render() {
     const { task, tasks } = this.state;
 
@@ -52,7 +68,7 @@ class App extends Component {
             Add Task
           </button>
         </form>
-        <Overview tasks={tasks} />
+        <Overview tasks={tasks} deleteTask={this.deleteTask}/>
       </div>
     );
   }
